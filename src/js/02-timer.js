@@ -7,12 +7,14 @@ const values = document.querySelectorAll('.value');
 startBtn.disabled = true;
 
 const dateToCal = [];
+let intervalId = null;
 
 const getTime = () => {
     const date = new Date();
     const timeNow = date.getTime();
     return timeNow;
 };
+
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -44,23 +46,29 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 };
 
+function addLeadingZero(value) {
+  return String(value).padStart(2, '0');
+};
 
 
 const calTime = () => {
-const countToDate = setInterval(() => {
-        values[0].textContent = convertMs(dateToCal[0] - getTime()).days;
-        values[1].textContent = convertMs(dateToCal[0] - getTime()).hours;
-        values[2].textContent = convertMs(dateToCal[0] - getTime()).minutes;
-        values[3].textContent = convertMs(dateToCal[0] - getTime()).seconds;
-        checkTime(countToDate)
+   intervalId = setInterval(() => {
+        values[0].textContent = addLeadingZero(convertMs(dateToCal[0] - getTime()).days);
+        values[1].textContent = addLeadingZero(convertMs(dateToCal[0] - getTime()).hours);
+        values[2].textContent = addLeadingZero(convertMs(dateToCal[0] - getTime()).minutes);
+     values[3].textContent = addLeadingZero(convertMs(dateToCal[0] - getTime()).seconds);
+     console.log(convertMs(dateToCal[0] - getTime()))
+     checkCount();
     }, 1000);
 };
 
-const checkTime = (interval) => {
-    if ( ) {
-        clearInterval(interval)
-    }
-    
-}
-flatpickr("#datetime-picker", options)
-startBtn.addEventListener('click', calTime)
+const checkCount = () => {
+  let a = 0;
+Object.values((convertMs(dateToCal[0] - getTime()))).forEach(element => a+=element)
+  if (a <1) {
+    clearInterval(intervalId)
+  }
+};
+
+flatpickr("#datetime-picker", options);
+startBtn.addEventListener('click', calTime);
