@@ -5,7 +5,7 @@ const inputDelay = document.querySelector(".form input[name=delay]");
 const inputStep = document.querySelector(".form input[name=step]");
 const inputAmount = document.querySelector(".form input[name=amount]");
 
-formEl.addEventListener('submit', onFormSubmit);
+form.addEventListener('submit', onFormSubmit);
 
 function onFormSubmit(event) {
   event.preventDefault();
@@ -19,7 +19,7 @@ function onFormSubmit(event) {
     delay += step;
 
   }
-  formEl.reset();
+  form.reset();
 }
 
 
