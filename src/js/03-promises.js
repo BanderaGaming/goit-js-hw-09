@@ -1,6 +1,6 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const formEl = document.querySelector(".form");
+const form = document.querySelector(".form");
 const inputDelay = document.querySelector(".form input[name=delay]");
 const inputStep = document.querySelector(".form input[name=step]");
 const inputAmount = document.querySelector(".form input[name=amount]");
